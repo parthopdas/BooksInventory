@@ -1,4 +1,6 @@
-﻿using System.Windows;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Windows;
 using Caliburn.Micro.Autofac;
 using IA.BooksInventory.App.ViewModels;
 
@@ -14,6 +16,11 @@ namespace IA.BooksInventory.App
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
             DisplayRootViewFor<ShellViewModel>();
+        }
+
+        protected override IEnumerable<Assembly> SelectAssemblies()
+        {
+            yield return typeof(ShellViewModel).Assembly;
         }
     }
 }

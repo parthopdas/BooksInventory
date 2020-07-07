@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:IA.BooksInventory.App.Views"
         mc:Ignorable="d"
         Title="Books Inventory - Isar Aerospace" Height="600" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
-
-    </Grid>
+  <Grid>
+    <ContentControl x:Name="ActiveItem" />
+  </Grid>
 </Window>

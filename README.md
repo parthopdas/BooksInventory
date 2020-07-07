@@ -16,3 +16,7 @@ Develop a GUI using C#, which imports data from the attached CSV file and displa
 - Rows with books, that are not in stock shall be highlighted
 - The text of each cell in the "Price" column shall be colored according to its value (color gradient from highest to lowest price)
 - Add another button which deletes all books from DataGridView/DataGrid, that are not in stock
+
+## TODO
+
+- Wireup keyboard shortcuts for the menus
