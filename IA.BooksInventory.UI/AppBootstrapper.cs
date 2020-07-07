@@ -11,9 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace IA.BooksInventory.UI
 {
-    public sealed class Bootstrapper : AutofacBootstrapper<ShellViewModel>
+    public sealed class AppBootstrapper : AutofacBootstrapper<ShellViewModel>
     {
-        public Bootstrapper()
+        public AppBootstrapper()
         {
             Initialize();
         }

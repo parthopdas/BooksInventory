@@ -9,6 +9,8 @@ namespace IA.BooksInventory.Domain.Entities
     {
         public string Title { get; set; }
 
+        public string Author { get; set; }
+
         public double Price { get; set; }
 
         public int Year { get; set; }

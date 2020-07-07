@@ -4,8 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:IA.BooksInventory.UI.Views"
+             xmlns:vm="clr-namespace:IA.BooksInventory.UI.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance Type=vm:HomeViewModel, IsDesignTimeCreatable=True}">
   <Grid>
     <DataGrid ItemsSource="{Binding Books}" />
   </Grid>
