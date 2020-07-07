@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Windows;
 using Caliburn.Micro;
 using IA.BooksInventory.Application.Books.Queries.GetAllBooks;
 using IA.BooksInventory.Domain.Enums;
@@ -10,6 +10,7 @@ namespace IA.BooksInventory.UI.ViewModels
     public sealed class HomeViewModel : Screen, IHandle<RefreshBooks>
     {
         private ICollection<BookVM> _books;
+        private BookVM _selectedItem;
 
         public HomeViewModel()
         {
@@ -30,9 +31,26 @@ namespace IA.BooksInventory.UI.ViewModels
             set => Set(ref _books, value);
         }
 
+        public BookVM SelectedItem
+        {
+            get => _selectedItem;
+            set => Set(ref _selectedItem, value);
+        }
+
+
         public void Handle(RefreshBooks refreshBooks)
         {
             Books = refreshBooks.Books;
+        }
+
+        public void ShowDescription()
+        {
+            if (SelectedItem == null)
+            {
+                return;
+            }
+
+            MessageBox.Show($"Title: {SelectedItem.Title}\nDescription: {SelectedItem.Description}", "Book description", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void LoadDesignData()

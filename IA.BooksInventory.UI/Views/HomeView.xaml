@@ -3,12 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:IA.BooksInventory.UI.Views"
              xmlns:vm="clr-namespace:IA.BooksInventory.UI.ViewModels"
+             xmlns:common="clr-namespace:IA.BooksInventory.UI.Common"
+             xmlns:domainEnums="clr-namespace:IA.BooksInventory.Domain.Enums;assembly=IA.BooksInventory.Domain"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=vm:HomeViewModel, IsDesignTimeCreatable=True}">
   <Grid>
-    <DataGrid ItemsSource="{Binding Books}" />
+    <DataGrid
+      x:Name="mydg"
+      ItemsSource="{Binding Path=Books}"
+      SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
+      AutoGenerateColumns="False"
+      CanUserAddRows="False"
+    >
+      <DataGrid.Columns>
+        <DataGridTextColumn
+          Header="Title"
+          Binding="{Binding Title}"
+          Width="300"
+        />
+        <DataGridTextColumn
+          Header="Author"
+          Binding="{Binding Author}"
+          Width="auto"
+        />
+        <DataGridTextColumn
+          Header="Price"
+          Binding="{Binding Price}"
+          Width="auto"
+        />
+        <DataGridTextColumn
+          Header="Year"
+          Binding="{Binding Year}"
+          Width="auto"
+        />
+        <DataGridComboBoxColumn
+          Header="Binding"
+          ItemsSource="{Binding Source={common:EnumBindingSource {x:Type domainEnums:Binding}}}"
+          SelectedItemBinding="{Binding Binding}"
+          Width="auto"
+        />
+        <DataGridCheckBoxColumn
+          Header="In stock"
+          Binding="{Binding InStock}"
+          Width="auto"
+        />
+        <DataGridTemplateColumn>
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate xmlns:cal="http://www.caliburnproject.org">
+              <Button
+                cal:Message.Attach="[Event Click] = [Action ShowDescription()]"
+                cal:Bind.Model="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+              >
+                Show
+              </Button>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+      </DataGrid.Columns>
+    </DataGrid>
   </Grid>
 </UserControl>
