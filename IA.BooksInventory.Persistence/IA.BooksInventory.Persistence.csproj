@@ -13,4 +13,10 @@
     <ProjectReference Include="..\IA.BooksInventory.Domain\IA.BooksInventory.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Books.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

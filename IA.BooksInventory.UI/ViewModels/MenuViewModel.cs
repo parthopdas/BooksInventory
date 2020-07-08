@@ -1,9 +1,11 @@
 using System;
+using System.Reflection;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using IA.BooksInventory.Application.Books.Commands.ClearOutOfStock;
 using IA.BooksInventory.Application.Books.Queries.GetAllBooks;
 using IA.BooksInventory.UI.Messages;
+using IA.BooksInventory.Common;
 using Microsoft.Win32;
 
 namespace IA.BooksInventory.UI.ViewModels
@@ -71,7 +73,8 @@ namespace IA.BooksInventory.UI.ViewModels
             var dlg = new OpenFileDialog
             {
                 DefaultExt = ".csv",
-                Filter = "Csv documents (.csv)|*.csv"
+                Filter = "Csv documents (.csv)|*.csv",
+                InitialDirectory = Assembly.GetExecutingAssembly().GetLocation(),
             };
 
             var result = dlg.ShowDialog();

@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IA.BooksInventory.Application\IA.BooksInventory.Application.csproj" />
+    <ProjectReference Include="..\IA.BooksInventory.Common\IA.BooksInventory.Common.csproj" />
     <ProjectReference Include="..\IA.BooksInventory.Persistence\IA.BooksInventory.Persistence.csproj" />
   </ItemGroup>
 
