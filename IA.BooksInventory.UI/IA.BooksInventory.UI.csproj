@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Resource Include="Images\InfoIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="4.2.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />

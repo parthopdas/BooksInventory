@@ -88,16 +88,17 @@
           Width="auto"
         />
         <DataGridTemplateColumn
-          Header="Description"
+          Header="Info"
+          Width="48"
         >
           <DataGridTemplateColumn.CellTemplate>
             <DataTemplate xmlns:cal="http://www.caliburnproject.org">
               <Button
                 cal:Message.Attach="[Event Click] = [Action ShowDescription()]"
-                cal:Bind.Model="{Binding DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                cal:Bind.Model="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                 Margin="5,0,5,5"
               >
-                Show description
+                <Image Source="/Images/InfoIcon.png" Width="12" Height="12"/>
               </Button>
             </DataTemplate>
           </DataGridTemplateColumn.CellTemplate>
