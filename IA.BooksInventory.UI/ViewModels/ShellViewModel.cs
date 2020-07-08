@@ -1,5 +1,4 @@
 using Caliburn.Micro;
-using IA.BooksInventory.Application.Books.Queries.GetAllBooks;
 using MediatR;
 
 namespace IA.BooksInventory.UI.ViewModels

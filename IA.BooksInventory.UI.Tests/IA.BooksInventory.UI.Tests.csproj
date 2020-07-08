@@ -19,4 +19,8 @@
     <ProjectReference Include="..\IA.BooksInventory.UI\IA.BooksInventory.UI.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="System.Xaml" />
+  </ItemGroup>
+
 </Project>

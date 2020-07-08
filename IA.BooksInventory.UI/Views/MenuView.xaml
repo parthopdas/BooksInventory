@@ -13,7 +13,7 @@
         <MenuItem x:Name="Exit" Header="E_xit" InputGestureText="Alt+F4" />
       </MenuItem>
       <MenuItem Header="_Data">
-        <MenuItem x:Name="ClearOutOfStockItems" Header="_Clear out-of-Stock items..."/>
+        <MenuItem x:Name="ClearOutOfStockItems" Header="_Clear out-of-Stock items..." IsEnabled="{Binding CanClearOutOfStockItems}"/>
       </MenuItem>
     </Menu>
   </Grid>

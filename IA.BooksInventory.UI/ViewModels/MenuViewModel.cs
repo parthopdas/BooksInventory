@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using System.Windows;
 using Caliburn.Micro;
+using IA.BooksInventory.Application.Books.Commands.ClearOutOfStock;
 using IA.BooksInventory.Application.Books.Queries.GetAllBooks;
 using IA.BooksInventory.UI.Messages;
 using Microsoft.Win32;
@@ -10,8 +10,26 @@ namespace IA.BooksInventory.UI.ViewModels
 {
     public sealed class MenuViewModel : BaseViewModel
     {
+        private bool _canClearOutOfStockItems;
+        private string _currentCsvFile;
+
         private readonly IEventAggregator _eventAggregator;
         private readonly Func<string> _filePicker;
+        private string CurrentCsvFile
+        {
+            get => _currentCsvFile;
+            set
+            {
+                _currentCsvFile = value;
+                CanClearOutOfStockItems = !string.IsNullOrEmpty(_currentCsvFile);
+            }
+        }
+
+        public bool CanClearOutOfStockItems
+        {
+            get => _canClearOutOfStockItems;
+            set => Set(ref _canClearOutOfStockItems, value);
+        }
 
         public MenuViewModel(IEventAggregator eventAggregator)
             : this(eventAggregator, GetFileFromUser)
@@ -26,10 +44,10 @@ namespace IA.BooksInventory.UI.ViewModels
 
         public async Task Open()
         {
-            var file = _filePicker();
-            if (file != null)
+            CurrentCsvFile = _filePicker();
+            if (CurrentCsvFile != null)
             {
-                var books = await Mediator.Send(new GetAllBooksQuery { CsvFile = file });
+                var books = await Mediator.Send(new GetAllBooksQuery { CsvFile = CurrentCsvFile });
 
                 await _eventAggregator.PublishOnUIThreadAsync(new RefreshBooks { Books = books });
             }
@@ -40,9 +58,12 @@ namespace IA.BooksInventory.UI.ViewModels
             System.Windows.Application.Current.MainWindow.Close();
         }
 
-        public void ClearOutOfStockItems()
+        public async Task ClearOutOfStockItems()
         {
-            MessageBox.Show("Clear out of stock items");
+            await Mediator.Send(new ClearOutOfStockCommand());
+            var books = await Mediator.Send(new GetAllBooksQuery { CsvFile = CurrentCsvFile });
+
+            await _eventAggregator.PublishOnUIThreadAsync(new RefreshBooks { Books = books });
         }
 
         private static string GetFileFromUser()

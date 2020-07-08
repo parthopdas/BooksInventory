@@ -7,7 +7,7 @@ namespace IA.BooksInventory.Persistence
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterMatchingTypesAsImplementedInterfaces(typeof(AutofacModule).Assembly, new[] { ".+Command$", ".+Query$", ".+Service$" });
+            builder.RegisterInstance(new DataService()).As<IDataService>();
         }
     }
 }

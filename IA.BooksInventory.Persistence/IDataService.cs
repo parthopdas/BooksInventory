@@ -9,6 +9,6 @@ namespace IA.BooksInventory.Persistence
     {
         Task<IEnumerable<Book>> GetAllBooks(string csvFile);
 
-        Task RemoveOutOfStockBooks();
+        Task ClearOutOfStockBooks();
     }
 }
