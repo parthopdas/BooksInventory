@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using Caliburn.Micro;
@@ -9,7 +10,7 @@ namespace IA.BooksInventory.UI.ViewModels
 {
     public sealed class HomeViewModel : Screen, IHandle<RefreshBooks>
     {
-        private ICollection<BookVM> _books;
+        private ICollection<BookVM> _books = Array.Empty<BookVM>();
         private BookVM _selectedItem;
 
         public HomeViewModel()
@@ -25,10 +26,16 @@ namespace IA.BooksInventory.UI.ViewModels
             eventAggregator.Subscribe(this);
         }
 
+        public bool HasBooks => Books.Count != 0;
+
         public ICollection<BookVM> Books
         {
             get => _books;
-            set => Set(ref _books, value);
+            set
+            {
+                Set(ref _books, value);
+                NotifyOfPropertyChange(() => HasBooks);
+            }
         }
 
         public BookVM SelectedItem

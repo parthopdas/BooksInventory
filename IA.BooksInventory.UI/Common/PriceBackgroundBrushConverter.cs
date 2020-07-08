@@ -13,9 +13,6 @@ namespace IA.BooksInventory.UI.Common
     {
         private const int MaxPrice = 100;
 
-        private static PriceBackgroundBrushConverter _instance;
-        public static PriceBackgroundBrushConverter Instance => _instance ?? (_instance = new PriceBackgroundBrushConverter());
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var price = (double)value;

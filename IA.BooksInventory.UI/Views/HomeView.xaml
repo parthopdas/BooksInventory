@@ -9,13 +9,45 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=vm:HomeViewModel, IsDesignTimeCreatable=True}">
+  <UserControl.Resources>
+    <common:BooleanToVisibilityConverter
+      x:Key="booleanToVisibilityConverter" 
+      True="Visible" 
+      False="Collapsed" />
+    <common:BooleanToVisibilityConverter
+      x:Key="reverseBooleanToVisibilityConverter" 
+      True="Collapsed" 
+      False="Visible" />
+    <common:PriceBackgroundBrushConverter
+      x:Key="priceBackgroundBrushConverter"
+    />
+  </UserControl.Resources>
   <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <TextBlock
+      HorizontalAlignment="Center"
+      VerticalAlignment="Center"
+      Background="White"
+      Grid.Row="0"
+      Grid.Column="0"
+      Visibility="{Binding Path=HasBooks, Converter={StaticResource reverseBooleanToVisibilityConverter}, FallbackValue=Visible}"
+    >
+      No data loaded. Open CSV file from File -> Open menu.
+    </TextBlock>
     <DataGrid
       x:Name="mydg"
       ItemsSource="{Binding Path=Books}"
       SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
       AutoGenerateColumns="False"
       CanUserAddRows="False"
+      Grid.Row="0"
+      Grid.Column="0"
+      Visibility="{Binding Path=HasBooks, Converter={StaticResource booleanToVisibilityConverter}, FallbackValue=Collapsed}"
     >
       <DataGrid.Columns>
         <DataGridTextColumn
@@ -35,7 +67,7 @@
         >
           <DataGridTextColumn.CellStyle>
             <Style TargetType="{x:Type DataGridCell}">
-              <Setter Property="Background" Value="{Binding Path=Price, Converter={x:Static common:PriceBackgroundBrushConverter.Instance}}" />
+              <Setter Property="Background" Value="{Binding Path=Price, Converter={StaticResource priceBackgroundBrushConverter}}" />
             </Style>
           </DataGridTextColumn.CellStyle>
         </DataGridTextColumn>
