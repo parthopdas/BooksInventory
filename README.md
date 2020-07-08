@@ -19,4 +19,4 @@ Develop a GUI using C#, which imports data from the attached CSV file and displa
 
 ## TODO
 
-- Wireup keyboard shortcuts for the menus
+- Wire up keyboard shortcuts for the menus

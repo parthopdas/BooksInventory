@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using IA.BooksInventory.Persistence;
 using MediatR;
-using AutoMapper.QueryableExtensions;
 using System.Linq;
 
 namespace IA.BooksInventory.Application.Books.Queries.GetAllBooks
@@ -19,9 +18,8 @@ namespace IA.BooksInventory.Application.Books.Queries.GetAllBooks
         {
             var books = await Db.GetAllBooks(request.CsvFile);
 
-
             return books
-                .ProjectTo<BookVM>(Mapper.ConfigurationProvider)
+                .Select(Mapper.Map<BookVM>)
                 .ToList();
         }
     }

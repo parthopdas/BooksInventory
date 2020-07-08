@@ -7,7 +7,7 @@ namespace IA.BooksInventory.Persistence
 {
     public interface IDataService
     {
-        Task<IQueryable<Book>> GetAllBooks(string csvFile);
+        Task<IEnumerable<Book>> GetAllBooks(string csvFile);
 
         Task RemoveOutOfStockBooks();
     }
