@@ -1,4 +1,4 @@
-# Isar Aerospace
+## Book Repository - Isar Aerospace
 
 ## Main Goal
 
@@ -17,6 +17,19 @@ Develop a GUI using C#, which imports data from the attached CSV file and displa
 - The text of each cell in the "Price" column shall be colored according to its value (color gradient from highest to lowest price)
 - Add another button which deletes all books from DataGridView/DataGrid, that are not in stock
 
+## Highlights
+
+- Solution built along the lines of [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+  - Individual pieces have high cohesive and low coupling.
+  - Layers become more general as we progress inwards. E.g. if we want to have build a web based solution, Application/Persistence/Domain/Common layers will stay the same.
+  - Demonstrates the CQRS pattern.
+- All business logic unit tested.
+- All awaitable code is async.
+
 ## TODO
 
-- Wire up keyboard shortcuts for the menus
+- Keeping the persistence layer simple.
+- Wire up keyboard shortcuts for the menus.
+- Strengthen Book parsing logic.
+- Support other decimal separators in book parsing logic. 
+- Price column gradation background assumes max price.
