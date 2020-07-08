@@ -9,12 +9,12 @@ namespace IA.BooksInventory.Persistence
 {
     public sealed class DataService : IDataService
     {
-        private static Func<string, IEnumerable<string>> FileReader = File.ReadAllLines;
-        private Func<string, IEnumerable<string>> _fileReader;
+        private static readonly Func<string, IEnumerable<string>> DefaultFileReader = File.ReadAllLines;
+        private readonly Func<string, IEnumerable<string>> _fileReader;
         private bool _clearOutOfStock;
 
         public DataService()
-            : this(FileReader)
+            : this(DefaultFileReader)
         {
         }
 

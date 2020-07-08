@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 using Brush = System.Windows.Media.Brush;
-using Brushes = System.Windows.Media.Brushes;
 using Color = System.Windows.Media.Color;
 
 namespace IA.BooksInventory.UI.Common
@@ -15,7 +14,7 @@ namespace IA.BooksInventory.UI.Common
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var price = (double)value;
+            var price = (double)(value ?? 0);
 
             var alpha = price > MaxPrice ? 255 : (price / MaxPrice) * 255;
 

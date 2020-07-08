@@ -1,5 +1,4 @@
 using Autofac;
-using IA.BooksInventory.Common;
 
 namespace IA.BooksInventory.Persistence
 {

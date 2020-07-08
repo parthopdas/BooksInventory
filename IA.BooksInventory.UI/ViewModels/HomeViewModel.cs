@@ -1,6 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Interop;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Caliburn.Micro;
 using IA.BooksInventory.Application.Books.Queries.GetAllBooks;
 using IA.BooksInventory.Domain.Enums;
@@ -12,6 +17,7 @@ namespace IA.BooksInventory.UI.ViewModels
     {
         private ICollection<BookVM> _books = Array.Empty<BookVM>();
         private BookVM _selectedItem;
+        private static ImageSource InfoIcon => CreateInfoIcon();
 
         public HomeViewModel()
         {
@@ -44,6 +50,15 @@ namespace IA.BooksInventory.UI.ViewModels
             set => Set(ref _selectedItem, value);
         }
 
+        public BitmapImage InfoIconImage => CreateInfoIcon();
+
+        private static BitmapImage CreateInfoIcon()
+        {
+            return Imaging.CreateBitmapSourceFromHIcon(
+                SystemIcons.Information.Handle,
+                Int32Rect.Empty,
+                BitmapSizeOptions.FromEmptyOptions()) as BitmapImage;
+        }
 
         public void Handle(RefreshBooks refreshBooks)
         {

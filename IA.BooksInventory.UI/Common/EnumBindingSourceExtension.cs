@@ -11,20 +11,22 @@ namespace IA.BooksInventory.UI.Common
             get { return _enumType; }
             set
             {
-                if (value != _enumType)
+                if (value == _enumType)
                 {
-                    if (null != value)
-                    {
-                        var enumType = Nullable.GetUnderlyingType(value) ?? value;
-
-                        if (!enumType.IsEnum)
-                        {
-                            throw new ArgumentException("Type must be for an Enum.");
-                        }
-                    }
-
-                    _enumType = value;
+                    return;
                 }
+
+                if (null != value)
+                {
+                    var enumType = Nullable.GetUnderlyingType(value) ?? value;
+
+                    if (!enumType.IsEnum)
+                    {
+                        throw new ArgumentException("Type must be for an Enum.");
+                    }
+                }
+
+                _enumType = value;
             }
         }
 

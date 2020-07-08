@@ -7,7 +7,7 @@ namespace IA.BooksInventory.UI.Common
 {
     public class BooleanConverter<T> : IValueConverter
     {
-        public BooleanConverter(T trueValue, T falseValue)
+        protected BooleanConverter(T trueValue, T falseValue)
         {
             True = trueValue;
             False = falseValue;
@@ -19,12 +19,12 @@ namespace IA.BooksInventory.UI.Common
 
         public virtual object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is bool && ((bool)value) ? True : False;
+            return value is bool val && val ? True : False;
         }
 
         public virtual object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is T && EqualityComparer<T>.Default.Equals((T)value, True);
+            return value is T val && EqualityComparer<T>.Default.Equals(val, True);
         }
     }
 }

@@ -57,7 +57,7 @@ namespace IA.BooksInventory.UI.ViewModels
 
         public void Exit()
         {
-            System.Windows.Application.Current.MainWindow.Close();
+            System.Windows.Application.Current.MainWindow?.Close();
         }
 
         public async Task ClearOutOfStockItems()

@@ -5,6 +5,6 @@ namespace IA.BooksInventory.UI.Messages
 {
     public sealed class RefreshBooks
     {
-        public ICollection<BookVM> Books { get; internal set; }
+        public ICollection<BookVM> Books { get; set; }
     }
 }

@@ -1,5 +1,3 @@
-using System.Net.NetworkInformation;
-using System.Windows.Controls;
 using Caliburn.Micro;
 
 namespace IA.BooksInventory.UI.ViewModels
